@@ -134,7 +134,7 @@
     <div class="legend">
       <span><span class="leg-dot" style="background:#378ADD;"></span>HO quarterly</span>
       <span><span class="leg-dot" style="background:#1D9E75;"></span>DG to be created</span>
-      <span><span class="leg-dot" style="background:#D4537E;"></span>Booking quarterly</span>
+      <span><span class="leg-dot" style="background:#D4537E;"></span>Booking gate quarterly</span>
     </div>
     <div style="position:relative;height:220px;"><canvas id="barChart"></canvas></div>
   </div>
@@ -158,59 +158,59 @@
         <tr>
           <th>Metric</th>
           <th>Annual Target</th>
+          <th>Annual per AE</th>
           <th>Q1 Target</th>
+          <th>Q1 per AE</th>
           <th>Q1 Actual</th>
           <th>Q1 Attainment</th>
+          <th>Q2 Target</th>
+          <th>Q2 per AE</th>
           <th>Q2 Actual (so far)</th>
+          <th>Q3 Target</th>
+          <th>Q3 per AE</th>
+          <th>Q4 Target</th>
+          <th>Q4 per AE</th>
           <th>YTD Actual</th>
           <th>YTD Attainment</th>
-          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Handover (HO)</strong></td>
-          <td>4,500</td>
-          <td>540</td>
-          <td>543</td>
-          <td><span class="tag tag-green">100.6%</span></td>
-          <td>88</td>
-          <td>631</td>
-          <td><span class="tag tag-green">14.0%</span></td>
-          <td><span class="tag tag-green">On Track</span></td>
-        </tr>
-        <tr>
-          <td><strong>Booking Gate (BG)</strong></td>
-          <td>540</td>
-          <td>64.8</td>
-          <td>0</td>
-          <td><span class="tag tag-gray">0%</span></td>
-          <td>0</td>
-          <td>0</td>
-          <td><span class="tag tag-gray">0%</span></td>
-          <td><span class="tag tag-gray">No data</span></td>
-        </tr>
-        <tr>
-          <td><strong>Annual Booking</strong></td>
-          <td>1,400</td>
-          <td>168</td>
-          <td>0</td>
-          <td><span class="tag tag-gray">0%</span></td>
-          <td>0</td>
-          <td>0</td>
-          <td><span class="tag tag-gray">0%</span></td>
-          <td><span class="tag tag-gray">No data</span></td>
+          <td>4,500</td><td>1,500</td>
+          <td>540</td><td>180</td><td>543</td><td><span class="tag tag-green">100.6%</span></td>
+          <td>1,575</td><td>525</td><td>88</td>
+          <td>1,575</td><td>525</td>
+          <td>810</td><td>270</td>
+          <td>631</td><td><span class="tag tag-green">14.0%</span></td>
+
         </tr>
         <tr>
           <td><strong>DG to be Created</strong></td>
-          <td>6,000</td>
-          <td>720</td>
-          <td>—</td>
-          <td><span class="tag tag-gray">N/A</span></td>
-          <td>—</td>
-          <td>—</td>
-          <td><span class="tag tag-gray">N/A</span></td>
-          <td><span class="tag tag-gray">No data</span></td>
+          <td>6,000</td><td>2,000</td>
+          <td>720</td><td>240</td><td>—</td><td><span class="tag tag-gray">N/A</span></td>
+          <td>2,100</td><td>700</td><td>—</td>
+          <td>2,100</td><td>700</td>
+          <td>1,080</td><td>360</td>
+          <td>—</td><td><span class="tag tag-gray">N/A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Annual Booking</strong></td>
+          <td>1,400</td><td>467</td>
+          <td>168</td><td>56</td><td>—</td><td><span class="tag tag-gray">—</span></td>
+          <td>490</td><td>163</td><td>—</td>
+          <td>490</td><td>163</td>
+          <td>252</td><td>84</td>
+          <td>—</td><td><span class="tag tag-gray">—</span></td>
+        </tr>
+        <tr>
+          <td><strong>Booking Gate (BG)</strong></td>
+          <td>540</td><td>180</td>
+          <td>64.8</td><td>21.6</td><td>—</td><td><span class="tag tag-gray">—</span></td>
+          <td>189</td><td>63</td><td>—</td>
+          <td>189</td><td>63</td>
+          <td>97.2</td><td>32.4</td>
+          <td>—</td><td><span class="tag tag-gray">—</span></td>
         </tr>
       </tbody>
     </table>
@@ -258,9 +258,9 @@ const SRC = {
   labels:   ['Q1','Q2','Q3','Q4'],
   ho:       [540, 1575, 1575, 810],
   dg:       [720, 2100, 2100, 1080],
-  bk:       [168, 490,  490,  252],
+  bk:       [64.8, 189, 189, 97.2],
   hoTarget: [540, 1575, 1575, 810],
-  hoActual: [543, null, null, null],
+  hoActual: [543, 88, null, null],
   bgTarget: [64.8,189, 189,  97.2],
   bgActual: [0, 0, null, null],
   hoAE:     [180, 525,  525,  270],
@@ -310,7 +310,7 @@ function makeBar(id, datasets) {
 const barChart = makeBar('barChart', [
   { label: 'HO quarterly',      data: SRC.ho.slice(), backgroundColor: '#378ADD', borderRadius: 3 },
   { label: 'DG to be created',  data: SRC.dg.slice(), backgroundColor: '#1D9E75', borderRadius: 3 },
-  { label: 'Booking quarterly', data: SRC.bk.slice(), backgroundColor: '#D4537E', borderRadius: 3 },
+  { label: 'Booking gate quarterly', data: SRC.bk.slice(), backgroundColor: '#D4537E', borderRadius: 3 },
 ]);
 
 const hoActualChart = makeBar('hoActualChart', [
