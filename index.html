@@ -148,56 +148,69 @@
   </div>
 </div>
 
-<div class="bottom-row">
-  <div class="chart-card">
-    <div class="chart-title">Per AE targets by quarter</div>
-    <div class="legend">
-      <span><span class="leg-dot" style="background:#7F77DD;"></span>HO per AE</span>
-      <span><span class="leg-dot" style="background:#BA7517;"></span>DG per AE</span>
-      <span><span class="leg-dot" style="background:#E24B4A;"></span>Booking per AE</span>
-    </div>
-    <div style="position:relative;height:220px;"><canvas id="lineChart"></canvas></div>
-  </div>
-  <div class="chart-card">
-    <div class="chart-title">HO actuals by rep (Q1 &amp; Q2)</div>
-    <div class="legend">
-      <span><span class="leg-dot" style="background:#7F77DD;"></span>Q1</span>
-      <span><span class="leg-dot" style="background:#5DCAA5;"></span>Q2</span>
-    </div>
-    <div style="position:relative;height:220px;"><canvas id="repChart"></canvas></div>
-  </div>
-</div>
+
 
 <div class="full-row">
   <div class="chart-card">
-    <div class="chart-title">Rep-level actuals breakdown</div>
+    <div class="chart-title">Annual summary with attainment</div>
     <table class="rep-table">
       <thead>
         <tr>
-          <th>AE Assigned</th>
-          <th>Q1 HO actual</th>
-          <th>Q2 HO actual</th>
-          <th>Q1 target (per AE)</th>
-          <th>Q1 attainment</th>
+          <th>Metric</th>
+          <th>Annual Target</th>
+          <th>Q1 Target</th>
+          <th>Q1 Actual</th>
+          <th>Q1 Attainment</th>
+          <th>Q2 Actual (so far)</th>
+          <th>YTD Actual</th>
+          <th>YTD Attainment</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Rohit Gulati</td><td>0</td><td>88</td><td>180</td><td>0%</td>
-          <td><span class="tag tag-gray">No Q1 data</span></td>
+          <td><strong>Handover (HO)</strong></td>
+          <td>4,500</td>
+          <td>540</td>
+          <td>543</td>
+          <td><span class="tag tag-green">100.6%</span></td>
+          <td>88</td>
+          <td>631</td>
+          <td><span class="tag tag-green">14.0%</span></td>
+          <td><span class="tag tag-green">On Track</span></td>
         </tr>
         <tr>
-          <td>Monalisa Guha</td><td>395</td><td>0</td><td>180</td><td>219%</td>
-          <td><span class="tag tag-green">Exceeded</span></td>
-        </tr>
-        <tr>
-          <td>Nikita Gupta</td><td>0</td><td>0</td><td>180</td><td>0%</td>
+          <td><strong>Booking Gate (BG)</strong></td>
+          <td>540</td>
+          <td>64.8</td>
+          <td>0</td>
+          <td><span class="tag tag-gray">0%</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="tag tag-gray">0%</span></td>
           <td><span class="tag tag-gray">No data</span></td>
         </tr>
         <tr>
-          <td>Rimil Kujur</td><td>148</td><td>0</td><td>180</td><td>82%</td>
-          <td><span class="tag tag-blue">In progress</span></td>
+          <td><strong>Annual Booking</strong></td>
+          <td>1,400</td>
+          <td>168</td>
+          <td>0</td>
+          <td><span class="tag tag-gray">0%</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="tag tag-gray">0%</span></td>
+          <td><span class="tag tag-gray">No data</span></td>
+        </tr>
+        <tr>
+          <td><strong>DG to be Created</strong></td>
+          <td>6,000</td>
+          <td>720</td>
+          <td>—</td>
+          <td><span class="tag tag-gray">N/A</span></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="tag tag-gray">N/A</span></td>
+          <td><span class="tag tag-gray">No data</span></td>
         </tr>
       </tbody>
     </table>
@@ -310,24 +323,6 @@ const bgChart = makeBar('bgChart', [
   { label: 'Actual', data: SRC.bgActual.slice(), backgroundColor: '#f59e0b', borderRadius: 3 },
 ]);
 
-const lineChart = new Chart(document.getElementById('lineChart'), {
-  type: 'line',
-  data: {
-    labels: SRC.labels.slice(),
-    datasets: [
-      { label: 'HO per AE',      data: SRC.hoAE.slice(), borderColor: '#7F77DD', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4 },
-      { label: 'DG per AE',      data: SRC.dgAE.slice(), borderColor: '#BA7517', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, borderDash: [5,4] },
-      { label: 'Booking per AE', data: SRC.bkAE.slice(), borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, borderDash: [2,3] },
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    clip: false,
-    layout: { padding: { top: 24 } },
-    plugins: { legend: { display: false }, datalabels: datalabelLine },
-    scales: { y: { ticks: { font: { size: 13 } }, grace: '12%' } }
-  }
-});
 
 new Chart(document.getElementById('donutChart'), {
   type: 'doughnut',
@@ -335,23 +330,6 @@ new Chart(document.getElementById('donutChart'), {
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { display: true, color: '#fff', font: { size: 14, weight: '700' }, formatter: v => v + '%' } } }
 });
 
-new Chart(document.getElementById('repChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Rohit Gulati','Monalisa Guha','Nikita Gupta','Rimil Kujur'],
-    datasets: [
-      { label: 'Q1', data: [0,395,0,148], backgroundColor: '#7F77DD', borderRadius: 3 },
-      { label: 'Q2', data: [88,0,0,0],    backgroundColor: '#5DCAA5', borderRadius: 3 },
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    clip: false,
-    layout: { padding: { top: 24 } },
-    plugins: { legend: { display: false }, datalabels: datalabelBar },
-    scales: { x: { ticks: { font: { size: 13 }, autoSkip: false } }, y: { grace: '12%' } }
-  }
-});
 
 // ── apply both filters ────────────────────────────────────────
 function applyFilters() {
@@ -374,11 +352,6 @@ function applyFilters() {
   bgChart.data.datasets[1].data = sliceArr(SRC.bgActual);
   bgChart.update();
 
-  lineChart.data.labels = lbl;
-  lineChart.data.datasets[0].data = sliceArr(SRC.hoAE);
-  lineChart.data.datasets[1].data = sliceArr(SRC.dgAE);
-  lineChart.data.datasets[2].data = sliceArr(SRC.bkAE);
-  lineChart.update();
 }
 
 // ── slicer events ─────────────────────────────────────────────
