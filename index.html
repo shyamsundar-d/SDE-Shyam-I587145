@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shyam Sundar D – 2026 KPI Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f4f6f9; color: #1a1a1a; padding: 24px; }
+  h1 { font-size: 26px; font-weight: 600; margin-bottom: 2px; }
+  .subtitle { font-size: 16px; color: #666; }
+  .header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .avatar { width: 48px; height: 48px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #1d4ed8; flex-shrink: 0; }
+  .section-label { font-size: 14px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .metric-card { background: #fff; border-radius: 10px; padding: 14px 16px; border: 1px solid #e5e7eb; }
+  .metric-label { font-size: 15px; color: #888; margin-bottom: 2px; }
+  .metric-value { font-size: 30px; font-weight: 600; color: #111; }
+  .metric-sub { font-size: 13px; margin-top: 4px; }
+  .actual { color: #059669; font-weight: 500; }
+  .pct { color: #6b7280; }
+  .attain-bar-bg { height: 4px; background: #e5e7eb; border-radius: 2px; margin-top: 6px; }
+  .attain-bar-fill { height: 4px; border-radius: 2px; }
+  .slicer-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .slicer-btn { font-size: 14px; padding: 6px 16px; border-radius: 6px; border: 1px solid #d1d5db; background: #fff; color: #555; cursor: pointer; transition: all 0.15s; }
+  .slicer-btn:hover { background: #f0f4ff; }
+  .slicer-btn.active { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; font-weight: 500; }
+  .chart-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .full-row { margin-bottom: 16px; }
+  .chart-card { background: #fff; border-radius: 10px; padding: 16px 18px; border: 1px solid #e5e7eb; }
+  .chart-title { font-size: 16px; font-weight: 600; color: #222; margin-bottom: 10px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; font-size: 14px; color: #555; }
+  .leg-dot { width: 12px; height: 12px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+  .rep-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .rep-table th { text-align: left; font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; }
+  .rep-table td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; color: #333; }
+  .rep-table tr:last-child td { border-bottom: none; }
+  .rep-table tr:hover td { background: #f9fafb; }
+  .tag { display: inline-block; font-size: 13px; padding: 3px 10px; border-radius: 4px; font-weight: 500; }
+  .tag-green { background: #d1fae5; color: #065f46; }
+  .tag-gray  { background: #f3f4f6; color: #6b7280; }
+  .tag-blue  { background: #dbeafe; color: #1e40af; }
+  @media (max-width: 700px) {
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-row, .bottom-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="avatar">SS</div>
+  <div>
+    <h1>Shyam Sundar D</h1>
+    <p class="subtitle">ID: I587145 &nbsp;·&nbsp; 2026 KPI Dashboard &nbsp;·&nbsp; All values in KEuro</p>
+  </div>
+</div>
+
+<div class="section-label">Annual targets vs actuals</div>
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="metric-label">Handover</div>
+    <div class="metric-value">4,500</div>
+    <div class="metric-sub"><span class="actual">Actual Q1: 543</span> <span class="pct">(100.6% of Q1 target 540)</span> &nbsp;·&nbsp; <span class="actual">Actual Q2 so far: 88</span></div>
+    <div class="attain-bar-bg"><div class="attain-bar-fill" style="width:100%;background:#059669;"></div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Booking gate</div>
+    <div class="metric-value">540</div>
+    <div class="metric-sub"><span class="pct">Q1 booking: 0 &nbsp;·&nbsp; Q2 booking so far: 0</span></div>
+    <div class="attain-bar-bg"><div class="attain-bar-fill" style="width:0%;background:#d1d5db;"></div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Annual booking</div>
+    <div class="metric-value">1,400</div>
+    <div class="metric-sub"><span class="pct">Q1 booking: 0 &nbsp;·&nbsp; Q2 booking so far: 0</span></div>
+    <div class="attain-bar-bg"><div class="attain-bar-fill" style="width:0%;background:#d1d5db;"></div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">DG</div>
+    <div class="metric-value">6,000</div>
+    <div class="metric-sub"><span class="pct">Q1 target: 720 &nbsp;·&nbsp; No actuals yet</span></div>
+    <div class="attain-bar-bg"><div class="attain-bar-fill" style="width:0%;background:#d1d5db;"></div></div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+  <div>
+    <div class="section-label">Category slicer</div>
+    <div class="slicer-row" id="slicers">
+      <button class="slicer-btn active" data-cat="all">All</button>
+      <button class="slicer-btn" data-cat="HO_Linearity">HO linearity</button>
+      <button class="slicer-btn" data-cat="DG_Linearity">DG linearity</button>
+      <button class="slicer-btn" data-cat="Booking_Linearity">Booking linearity</button>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Quarter slicer <span style="font-size:10px;font-weight:400;color:#aaa;text-transform:none;letter-spacing:0;">(multi-select)</span></div>
+    <div class="slicer-row" id="qslicers">
+      <button class="slicer-btn active" data-q="all">All</button>
+      <button class="slicer-btn" data-q="0">Q1</button>
+      <button class="slicer-btn" data-q="1">Q2</button>
+      <button class="slicer-btn" data-q="2">Q3</button>
+      <button class="slicer-btn" data-q="3">Q4</button>
+    </div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-card">
+    <div class="chart-title">Handover – quarterly target vs actual</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#93c5fd;"></span>Target</span>
+      <span><span class="leg-dot" style="background:#059669;"></span>Actual</span>
+    </div>
+    <div style="position:relative;height:240px;"><canvas id="hoActualChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Linearity split (2026 basis)</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#378ADD;"></span>Q1 12%</span>
+      <span><span class="leg-dot" style="background:#1D9E75;"></span>Q2 35%</span>
+      <span><span class="leg-dot" style="background:#D4537E;"></span>Q3 35%</span>
+      <span><span class="leg-dot" style="background:#BA7517;"></span>Q4 18%</span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="donutChart"></canvas></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-card">
+    <div class="chart-title">Quarterly metrics by category</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#378ADD;"></span>HO quarterly</span>
+      <span><span class="leg-dot" style="background:#1D9E75;"></span>DG to be created</span>
+      <span><span class="leg-dot" style="background:#D4537E;"></span>Booking quarterly</span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="barChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Booking gate – target vs actual</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#5DCAA5;"></span>Target</span>
+      <span><span class="leg-dot" style="background:#f59e0b;"></span>Actual (Q1 & Q2)</span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="bgChart"></canvas></div>
+  </div>
+</div>
+
+<div class="bottom-row">
+  <div class="chart-card">
+    <div class="chart-title">Per AE targets by quarter</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#7F77DD;"></span>HO per AE</span>
+      <span><span class="leg-dot" style="background:#BA7517;"></span>DG per AE</span>
+      <span><span class="leg-dot" style="background:#E24B4A;"></span>Booking per AE</span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="lineChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">HO actuals by rep (Q1 &amp; Q2)</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#7F77DD;"></span>Q1</span>
+      <span><span class="leg-dot" style="background:#5DCAA5;"></span>Q2</span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="repChart"></canvas></div>
+  </div>
+</div>
+
+<div class="full-row">
+  <div class="chart-card">
+    <div class="chart-title">Rep-level actuals breakdown</div>
+    <table class="rep-table">
+      <thead>
+        <tr>
+          <th>AE Assigned</th>
+          <th>Q1 HO actual</th>
+          <th>Q2 HO actual</th>
+          <th>Q1 target (per AE)</th>
+          <th>Q1 attainment</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rohit Gulati</td><td>0</td><td>88</td><td>180</td><td>0%</td>
+          <td><span class="tag tag-gray">No Q1 data</span></td>
+        </tr>
+        <tr>
+          <td>Monalisa Guha</td><td>395</td><td>0</td><td>180</td><td>219%</td>
+          <td><span class="tag tag-green">Exceeded</span></td>
+        </tr>
+        <tr>
+          <td>Nikita Gupta</td><td>0</td><td>0</td><td>180</td><td>0%</td>
+          <td><span class="tag tag-gray">No data</span></td>
+        </tr>
+        <tr>
+          <td>Rimil Kujur</td><td>148</td><td>0</td><td>180</td><td>82%</td>
+          <td><span class="tag tag-blue">In progress</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script>
+// ── register datalabels plugin ────────────────────────────────
+Chart.register(ChartDataLabels);
+
+const datalabelBar = {
+  display: true,
+  anchor: 'end',
+  align: 'end',
+  clamp: true,
+  clip: false,
+  offset: 3,
+  font: { size: 13, weight: '700' },
+  color: '#222',
+  backgroundColor: 'rgba(255,255,255,0.82)',
+  borderRadius: 3,
+  padding: { top: 2, bottom: 2, left: 4, right: 4 },
+  formatter: v => (v == null || v === 0) ? '' : v
+};
+
+const datalabelLine = {
+  display: true,
+  anchor: 'end',
+  align: 'top',
+  clamp: true,
+  clip: false,
+  offset: 4,
+  font: { size: 13, weight: '700' },
+  color: '#222',
+  backgroundColor: 'rgba(255,255,255,0.82)',
+  borderRadius: 3,
+  padding: { top: 2, bottom: 2, left: 4, right: 4 },
+  formatter: v => (v == null || v === 0) ? '' : v
+};
+
+
+const SRC = {
+  labels:   ['Q1','Q2','Q3','Q4'],
+  ho:       [540, 1575, 1575, 810],
+  dg:       [720, 2100, 2100, 1080],
+  bk:       [168, 490,  490,  252],
+  hoTarget: [540, 1575, 1575, 810],
+  hoActual: [543, null, null, null],
+  bgTarget: [64.8,189, 189,  97.2],
+  bgActual: [0, 0, null, null],
+  hoAE:     [180, 525,  525,  270],
+  dgAE:     [240, 700,  700,  360],
+  bkAE:     [56,  163,  163,  84]
+};
+
+let activeCat = 'all';
+let activeQs  = new Set(['all']); // 'all' or set of index strings '0'..'3'
+
+function isAllQ() { return activeQs.has('all'); }
+
+function getLabels() {
+  if (isAllQ()) return SRC.labels.slice();
+  return SRC.labels.filter((_, i) => activeQs.has(String(i)));
+}
+function sliceArr(arr) {
+  if (isAllQ()) return arr.slice();
+  return arr.filter((_, i) => activeQs.has(String(i)));
+}
+function catFilter(ho, dg, bk) {
+  if (activeCat === 'HO_Linearity')      return [ho, dg.map(()=>0), bk.map(()=>0)];
+  if (activeCat === 'DG_Linearity')      return [ho.map(()=>0), dg, bk.map(()=>0)];
+  if (activeCat === 'Booking_Linearity') return [ho.map(()=>0), dg.map(()=>0), bk];
+  return [ho, dg, bk];
+}
+
+// ── chart helpers ─────────────────────────────────────────────
+function makeBar(id, datasets) {
+  return new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: { labels: SRC.labels.slice(), datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      clip: false,
+      layout: { padding: { top: 24 } },
+      plugins: { legend: { display: false }, datalabels: datalabelBar },
+      scales: {
+        x: { ticks: { autoSkip: false, font: { size: 13 } } },
+        y: { ticks: { font: { size: 13 } }, grace: '12%' }
+      }
+    }
+  });
+}
+
+// ── build charts ──────────────────────────────────────────────
+const barChart = makeBar('barChart', [
+  { label: 'HO quarterly',      data: SRC.ho.slice(), backgroundColor: '#378ADD', borderRadius: 3 },
+  { label: 'DG to be created',  data: SRC.dg.slice(), backgroundColor: '#1D9E75', borderRadius: 3 },
+  { label: 'Booking quarterly', data: SRC.bk.slice(), backgroundColor: '#D4537E', borderRadius: 3 },
+]);
+
+const hoActualChart = makeBar('hoActualChart', [
+  { label: 'Target', data: SRC.hoTarget.slice(), backgroundColor: '#93c5fd', borderRadius: 3 },
+  { label: 'Actual', data: SRC.hoActual.slice(), backgroundColor: '#059669', borderRadius: 3 },
+]);
+
+const bgChart = makeBar('bgChart', [
+  { label: 'Target', data: SRC.bgTarget.slice(), backgroundColor: '#5DCAA5', borderRadius: 3 },
+  { label: 'Actual', data: SRC.bgActual.slice(), backgroundColor: '#f59e0b', borderRadius: 3 },
+]);
+
+const lineChart = new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: SRC.labels.slice(),
+    datasets: [
+      { label: 'HO per AE',      data: SRC.hoAE.slice(), borderColor: '#7F77DD', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4 },
+      { label: 'DG per AE',      data: SRC.dgAE.slice(), borderColor: '#BA7517', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, borderDash: [5,4] },
+      { label: 'Booking per AE', data: SRC.bkAE.slice(), borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, borderDash: [2,3] },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    clip: false,
+    layout: { padding: { top: 24 } },
+    plugins: { legend: { display: false }, datalabels: datalabelLine },
+    scales: { y: { ticks: { font: { size: 13 } }, grace: '12%' } }
+  }
+});
+
+new Chart(document.getElementById('donutChart'), {
+  type: 'doughnut',
+  data: { labels: SRC.labels, datasets: [{ data: [12,35,35,18], backgroundColor: ['#378ADD','#1D9E75','#D4537E','#BA7517'], borderWidth: 2 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { display: true, color: '#fff', font: { size: 14, weight: '700' }, formatter: v => v + '%' } } }
+});
+
+new Chart(document.getElementById('repChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Rohit Gulati','Monalisa Guha','Nikita Gupta','Rimil Kujur'],
+    datasets: [
+      { label: 'Q1', data: [0,395,0,148], backgroundColor: '#7F77DD', borderRadius: 3 },
+      { label: 'Q2', data: [88,0,0,0],    backgroundColor: '#5DCAA5', borderRadius: 3 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    clip: false,
+    layout: { padding: { top: 24 } },
+    plugins: { legend: { display: false }, datalabels: datalabelBar },
+    scales: { x: { ticks: { font: { size: 13 }, autoSkip: false } }, y: { grace: '12%' } }
+  }
+});
+
+// ── apply both filters ────────────────────────────────────────
+function applyFilters() {
+  const lbl = getLabels();
+  const [ho, dg, bk] = catFilter(sliceArr(SRC.ho), sliceArr(SRC.dg), sliceArr(SRC.bk));
+
+  barChart.data.labels = lbl;
+  barChart.data.datasets[0].data = ho;
+  barChart.data.datasets[1].data = dg;
+  barChart.data.datasets[2].data = bk;
+  barChart.update();
+
+  hoActualChart.data.labels = lbl;
+  hoActualChart.data.datasets[0].data = sliceArr(SRC.hoTarget);
+  hoActualChart.data.datasets[1].data = sliceArr(SRC.hoActual);
+  hoActualChart.update();
+
+  bgChart.data.labels = lbl;
+  bgChart.data.datasets[0].data = sliceArr(SRC.bgTarget);
+  bgChart.data.datasets[1].data = sliceArr(SRC.bgActual);
+  bgChart.update();
+
+  lineChart.data.labels = lbl;
+  lineChart.data.datasets[0].data = sliceArr(SRC.hoAE);
+  lineChart.data.datasets[1].data = sliceArr(SRC.dgAE);
+  lineChart.data.datasets[2].data = sliceArr(SRC.bkAE);
+  lineChart.update();
+}
+
+// ── slicer events ─────────────────────────────────────────────
+document.getElementById('slicers').addEventListener('click', e => {
+  const btn = e.target.closest('[data-cat]');
+  if (!btn) return;
+  activeCat = btn.dataset.cat;
+  document.querySelectorAll('#slicers .slicer-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === activeCat));
+  applyFilters();
+});
+
+document.getElementById('qslicers').addEventListener('click', e => {
+  const btn = e.target.closest('[data-q]');
+  if (!btn) return;
+  const q = btn.dataset.q;
+
+  if (q === 'all') {
+    activeQs = new Set(['all']);
+  } else {
+    activeQs.delete('all');
+    if (activeQs.has(q)) {
+      activeQs.delete(q);
+      if (activeQs.size === 0) activeQs = new Set(['all']); // reset to All if nothing left
+    } else {
+      activeQs.add(q);
+    }
+  }
+
+  document.querySelectorAll('#qslicers .slicer-btn').forEach(b => {
+    if (b.dataset.q === 'all') b.classList.toggle('active', activeQs.has('all'));
+    else b.classList.toggle('active', activeQs.has(b.dataset.q));
+  });
+  applyFilters();
+});
+</script>
+</body>
+</html>
